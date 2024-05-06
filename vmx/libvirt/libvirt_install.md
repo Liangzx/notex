@@ -17,11 +17,10 @@
 wget https://download.libvirt.org/libvirt-8.0.0.tar.xz
 
 #2. 配置（编译debug版本）
-# meson build -Dsystem=true -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled --buildtype=debug
-meson build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled --buildtype=debug
+meson build -Dsystem=true -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled --buildtype=debug
 
 # 3. 编译 [-v] 能查看编译的命令 查看是否带 -g
-ninja -C -v build
+ninja -v -C build
 
 # 4. 安装
 # 注意这里会安装到系统目录下，所以如果为了调试的话不需要安装

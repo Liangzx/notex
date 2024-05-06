@@ -3,7 +3,6 @@
 ## refs
 
 [qemu-img](https://www.qemu.org/docs/master/tools/qemu-img.html)
-[manpage](https://www.qemu.org/docs/master/system/qemu-manpage.html)
 [QEMU block drivers reference](https://www.qemu.org/docs/master/system/qemu-block-drivers.html)
 
 ## qemu-img info
@@ -32,9 +31,20 @@ ID        TAG                 VM SIZE                DATE       VM CLOCK
 
 ```
 
+## qemu-img create
+
+```shell
+# create [--object OBJECTDEF] [-q] [-f FMT] [-b BACKING_FILE [-F BACKING_FMT]] [-u] [-o OPTIONS] FILENAME [SIZE]
+
+# 创建磁盘
+qemu-img create -f qcow2 mydisk.qcow2 1G
+```
+
 ## qemu-img snapshot
 
 ```shell
+# snapshot [--object OBJECTDEF] [--image-opts] [-U] [-q] [-l | -a SNAPSHOT | -c SNAPSHOT | -d SNAPSHOT] FILENAME
+
 # 1. 创建
 # qemu-img snapshot -c <snapshot_name> <disk_image>
 qemu-img snapshot -c snapshot1 /var/lib/libvirt/images/ubuntu20.04.qcow2
@@ -49,13 +59,14 @@ qemu-img snapshot -l /var/lib/libvirt/images/ubuntu20.04.qcow2
 
 # 4. 应用
 # qemu-img snapshot -a <snapshot_name> <disk_image>
-qemu-img snapshot -d snapshot1 /var/lib/libvirt/images/ubuntu20.04.qcow2
+qemu-img snapshot -a snapshot1 /var/lib/libvirt/images/ubuntu20.04.qcow2
 
 ```
 
 ## qemu-img bitmap
 
 ```shell
-qemu-img bitmap --add  /var/lib/libvirt/images/ubuntu20.04.qcow2 hell_bt1
+# qemu-img info mydisk.qcow2 查看 bitmap 信息
+qemu-img bitmap --add mydisk.qcow2 hell_bt1
 
 ```

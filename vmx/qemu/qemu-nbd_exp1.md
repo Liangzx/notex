@@ -1,3 +1,5 @@
+# qemu-nbd exp1
+
 https://blog.csdn.net/cclethe/article/details/107093834
 
 ## 基本原理
@@ -47,7 +49,7 @@ qemu-nbd -f qcow2 -c /dev/yournbddev yourimg
 lsblk -f
 
 # 挂载分区 -- 其中pn代表你要挂载的时镜像里的分区
-mount /dev/[yournbddev][pn] /your/mount/point
+#mount /dev/[yournbddev][pn] /your/mount/point
 
 # 卸载分区
 umount /your/mount/point
