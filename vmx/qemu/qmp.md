@@ -1,11 +1,13 @@
 # qmp
 
 [QEMU QMP Reference Manual](https://www.qemu.org/docs/master/interop/qemu-qmp-ref.html)
+[QEMU QMP Reference Manual]
 [qmp-wiki](https://wiki.qemu.org/Documentation/QMP)
 [QEMU Machine Protocol Specification](https://www.qemu.org/docs/master/interop/qmp-spec.html)
 [go-qemu](https://github.com/digitalocean/go-qemu)
 [qemu添加hmp和qmp接口](https://blog.csdn.net/daxiatou/article/details/100152212)
 [基于QMP实现对qemu虚拟机进行交互](https://blog.csdn.net/weixin_40836557/article/details/135959048)
+[Dirty Bitmaps and Incremental Backup](https://www.qemu.org/docs/master/interop/bitmaps.html)
 
 ## 基于QMP实现对qemu虚拟机进行交互
 
