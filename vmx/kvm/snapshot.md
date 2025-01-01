@@ -73,21 +73,23 @@ virsh snapshot-delete ub2004_1 snapshot01
 
 #### 利用qemu-img
 
-```text
-关机态
-可以利用qcow2的backing_file创建。
+```shell
+# 关机态
+# 可以利用qcow2的backing_file创建。
+# qemu-img snapshot -c snapshot1 /var/lib/libvirt/images/ubuntu20.04.qcow2 (内置快照)
+qemu-img create -F qcow2 -b /var/lib/libvirt/images/ubuntu20.04.qcow2  -f qcow2 /var/lib/libvirt/images/ubuntu20.04_snap2.qcow2
 
-运行态
-可以利用qemu的snapshot_blkdev命令。（为了数据一致性，可以使用guest-fsfreeze-freeze和guest-fsfreeze-thaw进行文件系统的冻结解冻结操作）
-多盘可以利用qemu的transaction实现atomic。
+# 运行态
+# 可以利用qemu的snapshot_blkdev命令。（为了数据一致性，可以使用guest-fsfreeze-freeze和guest-fsfreeze-thaw进行文件系统的冻结解冻结操作）
+# 多盘可以利用qemu的transaction实现atomic。
 ```
 
 #### 利用libvirt
 
 ```shell
 # 1. 创建
-virsh snapshot-create-as --domain ub2004_1 snap1 snap1-desc \
---disk-only --diskspec vda,snapshot=external,file=/export/vmimages/sn1-of-f17-base.qcow2 \
+virsh snapshot-create-as --domain ub2004_1 snap1 \
+--disk-only --diskspec vda,snapshot=external,file=/var/lib/libvirt/images/ub2004_1_snap1.qcow2 \
 --atomic
 
 # 2. 查看
@@ -95,14 +97,16 @@ virsh domblklist ub2004_1
 
 ```
 
-
 ## 参考
 
 [KVM: creating and reverting libvirt external snapshots](https://fabianlee.org/2021/01/10/kvm-creating-and-reverting-libvirt-external-snapshots/)
 
 [QEMU checkpoint(snapshot) 使用](https://blog.csdn.net/JaCenz/article/details/126929081)
 
+[qemu的snapshot快照功能的详细使用介绍](https://blog.csdn.net/qq_37887537/article/details/129043781)
+
 [Features/Snapshots](https://wiki.qemu.org/Features/Snapshots)
+
 [kvm虚拟机快照技术](https://www.cnblogs.com/guge-94/p/11827390.html)
 
 [KVM 介绍（7）：使用 libvirt 做 QEMU/KVM 快照和 Nova 实例的快照 （Nova Instances Snapshot Libvirt）](https://www.cnblogs.com/sammyliu/p/4468757.html)

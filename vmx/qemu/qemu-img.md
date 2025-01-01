@@ -69,4 +69,13 @@ qemu-img snapshot -a snapshot1 /var/lib/libvirt/images/ubuntu20.04.qcow2
 # qemu-img info mydisk.qcow2 查看 bitmap 信息
 qemu-img bitmap --add mydisk.qcow2 hell_bt1
 
+# 列出位图
+qemu-img bitmap list /path/to/disk.qcow2
+
+# 查看特定位图信息
+qemu-img bitmap show /path/to/disk.qcow2 --name hotbitmap
+
+# 导出位图数据
+
+
 ```
