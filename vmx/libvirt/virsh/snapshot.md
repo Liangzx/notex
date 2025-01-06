@@ -88,13 +88,13 @@ qemu-img create -F qcow2 -b /var/lib/libvirt/images/ubuntu20.04.qcow2  -f qcow2 
 
 ```shell
 # 1. 创建
+# virsh snapshot-create-as --domain ubuntu20.04 --name snapshot1 --disk-only --diskspec vda,file=/var/lib/libvirt/images/ubuntu20.04-snapshot1.qcow2 --atomic
 virsh snapshot-create-as --domain ub2004_1 snap1 \
 --disk-only --diskspec vda,snapshot=external,file=/var/lib/libvirt/images/ub2004_1_snap1.qcow2 \
 --atomic
 
 # 2. 查看
 virsh domblklist ub2004_1
-
 ```
 
 ## 参考
