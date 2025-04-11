@@ -80,6 +80,25 @@ nbdkit -v -e=disk2  --port=10810 file /data/nbd/disk2.qcow2&
 
 ```
 
+## nbd 实现文件级备份恢复
+
+```shell
+# 连接 nbdkit 暴露的设备
+modprobe nbd max_part=8
+nbd-client 172.20.30.176 10809 /dev/nbd0
+
+# 查看分区
+sudo fdisk -l /dev/nbd0
+
+# 查看文件系统
+sudo blkid /dev/nbd0p1
+
+# 只读凡是挂载（如果nbdkit暴露的时候是只读的话，这里不用只读挂载不了）
+sudo mount -o ro /dev/nbd0p1 /data/nbd1
+
+```
+
+
 /etc/nbd-server/config
 
 ```text

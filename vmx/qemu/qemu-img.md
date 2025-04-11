@@ -79,3 +79,16 @@ qemu-img bitmap show /path/to/disk.qcow2 --name hotbitmap
 
 
 ```
+
+## qemu-img map
+
+```shell
+qemu-img map --output=json /var/lib/evc/lhv/storage/local/204bb8b7-f013-4f43-9bde-7d3db5228805/1b775b02-ba69-4e02-80ff-e51a0c5024cf.img
+qemu-img map /var/lib/evc/lhv/storage/local/204bb8b7-f013-4f43-9bde-7d3db5228805/1b775b02-ba69-4e02-80ff-e51a0c5024cf.img -U -f qcow2 --output json | jq -c '[.[] | select((.zero == false) and (.depth <= 0) and (.start >= 0) )]'
+```
+
+## qemu-img compare
+
+```shell
+qemu-img compare /var/lib/evc/lhv/storage/local/204bb8b7-f013-4f43-9bde-7d3db5228805/1b775b02-ba69-4e02-80ff-e51a0c5024cf.img /var/lib/evc/lhv/storage/local/204bb8b7-f013-4f43-9bde-7d3db5228805/.snap/8fb37e8a-f483-46e5-99da-6ec371a7fd79.snap.img
+```
